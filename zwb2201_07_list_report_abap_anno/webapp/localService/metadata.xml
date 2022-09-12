@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+        Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWB2201_07_LROP_ANNO_SRV" xml:lang="en"
+            sap:schema-version="1">
+            <EntityType Name="Flight" sap:label="Flight" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carrier" />
+                    <PropertyRef Name="FlightNumber" />
+                </Key>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="AirLine Code" sap:updatable="false" />
+                <Property Name="FlightNumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false"
+                    sap:label="Flight Number" sap:updatable="false" />
+                <Property Name="CountryFrom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="Departure Country" />
+                <Property Name="DepartureCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false"
+                    sap:label="Departure City" />
+                <Property Name="DepartureAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="Departure Airport" />
+                <Property Name="ArrivalCountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="Arrival Country" />
+                <Property Name="ArrivalCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false"
+                    sap:label="Arrival City" />
+                <Property Name="ArrivalAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="Arrival Airport" />
+                <Property Name="FlightTime" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false"
+                    sap:label="FlightTime" sap:filterable="false" />
+                <Property Name="DepartureTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false"
+                    sap:label="Departure" sap:filterable="false" />
+                <Property Name="ArrivalTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false"
+                    sap:label="Arrival Time" sap:filterable="false" />
+                <Property Name="Distance" Type="Edm.Decimal" Nullable="false" Precision="4" Scale="4"
+                    sap:unicode="false" sap:unit="DistanceUnit" sap:label="Distance" sap:filterable="false" />
+                <Property Name="DistanceUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false"
+                    sap:label="Distance Unit" sap:semantics="unit-of-measure" />
+                <Property Name="Period" Type="Edm.Byte" Nullable="false" sap:unicode="false"
+                    sap:label="Arrival n day(s) later" />
+            </EntityType>
+            <EntityContainer Name="ZWB2201_07_LROP_ANNO_SRV_Entities" m:IsDefaultEntityContainer="true"
+                sap:supported-formats="atom json xlsx">
+                <EntitySet Name="FlightSet" EntityType="ZWB2201_07_LROP_ANNO_SRV.Flight" sap:creatable="false"
+                    sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"
+                    sap:content-version="1" />
+            </EntityContainer>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZWB2201_07_LROP_ANNO_SRV.Flight">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Carrier</PropertyPath>
+                        <PropertyPath>FlightNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Carrier" />
+                            <PropertyValue Property="Label" String="Airline" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FlightNumber" />
+                            <PropertyValue Property="Label" String="Flight No." />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalAirport" />
+                            <PropertyValue Property="Label" String="Arrival Airport" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalCity" />
+                            <PropertyValue Property="Label" String="Arrival City" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalCountry" />
+                            <PropertyValue Property="Label" String="Arrival Country" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DepartureAirport" />
+                            <PropertyValue Property="Label" String="Departure Airport" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DepartureCity" />
+                            <PropertyValue Property="Label" String="Departure City" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CountryFrom" />
+                            <PropertyValue Property="Label" String="Departure Country" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+                href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_07_LROP_ANNO_SRV/$metadata" />
+            <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+                href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_07_LROP_ANNO_SRV/$metadata" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

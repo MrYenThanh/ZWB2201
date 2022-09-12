@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZWB2201_12_GET_EXPANDS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Flight" sap:label="Flight" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carrier"/>
+                    <PropertyRef Name="FlightNumber"/>
+                </Key>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="AirLine Code" sap:updatable="false"/>
+                <Property Name="FlightNumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Flight Number" sap:updatable="false"/>
+                <Property Name="CountryFrom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Departure Country"/>
+                <Property Name="DepartureCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Departure City"/>
+                <Property Name="DepartureAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Departure Airport"/>
+                <Property Name="ArrivalCountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Arrival Country"/>
+                <Property Name="ArrivalCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Arrival City"/>
+                <Property Name="ArrivalAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Arrival Airport"/>
+                <Property Name="FlightTime" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Flight Time" sap:filterable="false"/>
+                <Property Name="DepartureTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Departure Time" sap:filterable="false"/>
+                <Property Name="ArrivalTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Arrival Time" sap:filterable="false"/>
+                <Property Name="Distance" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="4" sap:unicode="false" sap:unit="DistanceUnit" sap:label="Distance" sap:filterable="false"/>
+                <Property Name="DistanceUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Distance Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Period" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Arrival n day(s) later"/>
+                <NavigationProperty Name="to_Airline" Relationship="ZWB2201_12_GET_EXPANDS_SRV.Flight_to_Airline" FromRole="ToRole_Flight_to_Airline" ToRole="FromRole_Flight_to_Airline"/>
+            </EntityType>
+            <EntityType Name="Airline" sap:label="Airline" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AirlineCode"/>
+                </Key>
+                <Property Name="AirlineCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline Code" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AirlineName" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Airline Name" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <Association Name="Flight_to_Airline" sap:content-version="1">
+                <End Type="ZWB2201_12_GET_EXPANDS_SRV.Airline" Multiplicity="1" Role="FromRole_Flight_to_Airline"/>
+                <End Type="ZWB2201_12_GET_EXPANDS_SRV.Flight" Multiplicity="*" Role="ToRole_Flight_to_Airline"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Flight_to_Airline">
+                        <PropertyRef Name="AirlineCode"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Flight_to_Airline">
+                        <PropertyRef Name="Carrier"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZWB2201_12_GET_EXPANDS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="FlightSet" EntityType="ZWB2201_12_GET_EXPANDS_SRV.Flight" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AirlineSet" EntityType="ZWB2201_12_GET_EXPANDS_SRV.Airline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Flight_to_AirlineSet" Association="ZWB2201_12_GET_EXPANDS_SRV.Flight_to_Airline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AirlineSet" Role="FromRole_Flight_to_Airline"/>
+                    <End EntitySet="FlightSet" Role="ToRole_Flight_to_Airline"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_12_GET_EXPANDS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_12_GET_EXPANDS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

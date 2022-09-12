@@ -1,0 +1,242 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/SAP/ZWB2201_13_CDS_ENTITY_SRV/$metadata">
+        <edmx:Include Namespace="ZWB2201_13_CDS_ENTITY_SRV" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <!-- UI Annotations for Flight Entity -->
+            <Annotations Target="ZWB2201_13_CDS_ENTITY_SRV.Flight">
+
+                <!-- === List Report Page === -->
+
+                <!-- Add Carried and Flight Number filters -->
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Carrier</PropertyPath>
+                        <PropertyPath>FlightNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+
+                <!-- Add Columns to the main List Table -->
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Carrier"></PropertyValue>
+                            <PropertyValue Property="Label" String="Airline"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FlightNumber"></PropertyValue>
+                            <PropertyValue Property="Label" String="Flight No."></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalAirport"></PropertyValue>
+                            <PropertyValue Property="Label" String="Arrival Airport"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalCity"></PropertyValue>
+                            <PropertyValue Property="Label" String="Arrival City"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ArrivalCountry"></PropertyValue>
+                            <PropertyValue Property="Label" String="Arrival Country"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DepartureAirport"></PropertyValue>
+                            <PropertyValue Property="Label" String="Departure Airport"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DepartureCity"></PropertyValue>
+                            <PropertyValue Property="Label" String="Departure City"></PropertyValue>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CountryFrom"></PropertyValue>
+                            <PropertyValue Property="Label" String="Departure Country"></PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <!-- === Object Page for Details === -->
+
+                <!-- Add Carried and Flight Number filters -->
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Flight Information" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Main" />
+                        </Record>
+
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Departure Information" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Departure" />
+                        </Record>
+
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Arrival Information" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Arrival" />
+                        </Record>
+
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.FieldGroup" Qualifier="Main">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Carrier"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Airline"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="FlightNumber"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Flight Number"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Distance"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Distance"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DistanceUnit"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Distance Unit"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="FlightTime"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Flight Time (minutes)"></PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.FieldGroup" Qualifier="Departure">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DepartureAirport"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Departure Airport"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DepartureCity"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Departure City"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CountryFrom"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Departure Country"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="DepartureTime"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Time"></PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.FieldGroup" Qualifier="Arrival">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ArrivalAirport"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Arrival Airport"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ArrivalCity"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Arrival City"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ArrivalCountry"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Arrival Country"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ArrivalTime"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Time"></PropertyValue>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Period"></PropertyValue>
+                                    <PropertyValue Property="Label" String="Arrival (n) days later:"></PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+            </Annotations>
+
+            <Annotations Target="ZWB2201_13_CDS_ENTITY_SRV.Flight/Carrier">
+                <Annotation Term="Common.Text" Path="to_Airline/AirlineName">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst" ></Annotation>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Airline" />
+                        <PropertyValue Property="CollectionPath" String="AirlineSet" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Carrier" />
+                                    <PropertyValue Property="ValueListProperty" String="AirlineCode" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AirlineName" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Airline" />
+            </Annotations>
+
+            <Annotations Target="ZWB2201_13_CDS_ENTITY_SRV.Flight/ArrivalCountry">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Arrival Country" />
+                        <PropertyValue Property="CollectionPath" String="ZI_WB2201_CountryText" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ArrivalCountry" />
+                                    <PropertyValue Property="ValueListProperty" String="Country" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CountryName" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Arrival Country" />
+            </Annotations>
+
+            <Annotations Target="ZWB2201_13_CDS_ENTITY_SRV.Flight/CountryFrom">
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Departure Country" />
+                        <PropertyValue Property="CollectionPath" String="ZI_WB2201_CountryText" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CountryFrom" />
+                                    <PropertyValue Property="ValueListProperty" String="Country" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CountryName" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Departure Country" />
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

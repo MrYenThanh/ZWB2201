@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZWB2201_13_CDS_ENTITY_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Flight" sap:label="Flight" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Carrier"/>
+                    <PropertyRef Name="FlightNumber"/>
+                </Key>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="AirLine Code" sap:updatable="false"/>
+                <Property Name="FlightNumber" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Flight Number" sap:updatable="false"/>
+                <Property Name="CountryFrom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Departure Country"/>
+                <Property Name="DepartureCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Departure City"/>
+                <Property Name="DepartureAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Departure Airport"/>
+                <Property Name="ArrivalCountry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Arrival Country"/>
+                <Property Name="ArrivalCity" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Arrival City"/>
+                <Property Name="ArrivalAirport" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Arrival Airport"/>
+                <Property Name="FlightTime" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Flight Time" sap:filterable="false"/>
+                <Property Name="DepartureTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Departure Time" sap:filterable="false"/>
+                <Property Name="ArrivalTime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Arrival Time" sap:filterable="false"/>
+                <Property Name="Distance" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="4" sap:unicode="false" sap:unit="DistanceUnit" sap:label="Distance" sap:filterable="false"/>
+                <Property Name="DistanceUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Distance Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Period" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Arrival n day(s) later"/>
+                <NavigationProperty Name="to_Airline" Relationship="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_Airline" FromRole="ToRole_Flight_to_Airline" ToRole="FromRole_Flight_to_Airline"/>
+                <NavigationProperty Name="to_DepartureCountry" Relationship="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_CountryFrom" FromRole="ToRole_Flight_to_CountryFrom" ToRole="FromRole_Flight_to_CountryFrom"/>
+                <NavigationProperty Name="to_ArrivalCountry" Relationship="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_CountryTo" FromRole="ToRole_Flight_to_CountryTo" ToRole="FromRole_Flight_to_CountryTo"/>
+            </EntityType>
+            <EntityType Name="Airline" sap:label="Airline" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AirlineCode"/>
+                </Key>
+                <Property Name="AirlineCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Airline Code" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AirlineName" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Airline Name" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZI_WB2201_CountryTextType" sap:label="WB2201 - Country Text" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Country"/>
+                </Key>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Country Key"/>
+                <Property Name="CountryName" Type="Edm.String" MaxLength="50" sap:label="Country Name" sap:quickinfo="Country Name (Max. 50 Characters)"/>
+            </EntityType>
+            <Association Name="Flight_to_Airline" sap:content-version="1">
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.Airline" Multiplicity="1" Role="FromRole_Flight_to_Airline"/>
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.Flight" Multiplicity="*" Role="ToRole_Flight_to_Airline"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Flight_to_Airline">
+                        <PropertyRef Name="AirlineCode"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Flight_to_Airline">
+                        <PropertyRef Name="Carrier"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Flight_to_CountryFrom" sap:content-version="1">
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.ZI_WB2201_CountryTextType" Multiplicity="0..1" Role="FromRole_Flight_to_CountryFrom"/>
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.Flight" Multiplicity="*" Role="ToRole_Flight_to_CountryFrom"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Flight_to_CountryFrom">
+                        <PropertyRef Name="Country"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Flight_to_CountryFrom">
+                        <PropertyRef Name="CountryFrom"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Flight_to_CountryTo" sap:content-version="1">
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.ZI_WB2201_CountryTextType" Multiplicity="0..1" Role="FromRole_Flight_to_CountryTo"/>
+                <End Type="ZWB2201_13_CDS_ENTITY_SRV.Flight" Multiplicity="*" Role="ToRole_Flight_to_CountryTo"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Flight_to_CountryTo">
+                        <PropertyRef Name="Country"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Flight_to_CountryTo">
+                        <PropertyRef Name="ArrivalCountry"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZWB2201_13_CDS_ENTITY_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_WB2201_CountryText" EntityType="ZWB2201_13_CDS_ENTITY_SRV.ZI_WB2201_CountryTextType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="FlightSet" EntityType="ZWB2201_13_CDS_ENTITY_SRV.Flight" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AirlineSet" EntityType="ZWB2201_13_CDS_ENTITY_SRV.Airline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Flight_to_CountryFromSet" Association="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_CountryFrom" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZI_WB2201_CountryText" Role="FromRole_Flight_to_CountryFrom"/>
+                    <End EntitySet="FlightSet" Role="ToRole_Flight_to_CountryFrom"/>
+                </AssociationSet>
+                <AssociationSet Name="Flight_to_AirlineSet" Association="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_Airline" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AirlineSet" Role="FromRole_Flight_to_Airline"/>
+                    <End EntitySet="FlightSet" Role="ToRole_Flight_to_Airline"/>
+                </AssociationSet>
+                <AssociationSet Name="Flight_to_CountryToSet" Association="ZWB2201_13_CDS_ENTITY_SRV.Flight_to_CountryTo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZI_WB2201_CountryText" Role="FromRole_Flight_to_CountryTo"/>
+                    <End EntitySet="FlightSet" Role="ToRole_Flight_to_CountryTo"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZWB2201_13_CDS_ENTITY_SRV.ZWB2201_13_CDS_ENTITY_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_13_CDS_ENTITY_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapapp01.fsoft.com.vn:8000/sap/opu/odata/SAP/ZWB2201_13_CDS_ENTITY_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
